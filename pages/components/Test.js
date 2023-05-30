@@ -1,6 +1,9 @@
 import React from "react";
+import Image from "next/image";
 import myData from '../../public/data/data'
-const Test = () => {
+import Link from "next/link";
+
+const Test = ({single, setSingle}) => {
 
   return (
     <div>
@@ -12,27 +15,36 @@ const Test = () => {
         <div key={item.id} className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
             <article className="overflow-hidden rounded-lg shadow-lg">
               <a href="#">
-                {/* <img
+                <Image
                   alt="Placeholder"
                   className="block h-auto w-full"
-                  src={item.x_studio_property_images.split(",")[0] || ""}
-                /> */}
+                  src={ "https://qoshan.com/wp-content/uploads/2020/06/received_10153208579788444-2.jpeg"}
+                  width={1000}
+                  height={1000}
+                />
               </a>
 
               <header className="flex items-center justify-between leading-tight p-2 md:p-4">
                 <h1 className="text-lg">
-                  <a className="no-underline hover:underline text-black" href="#">
+                <Link href={{
+        pathname: "Details",
+        query: {
+            name: item.x_url,
+        }
+    }}>
                     {item.x_name}
-                  </a>
+                  </Link>
                 </h1>
                 <p className="text-grey-darker text-sm">
                     {/* {(item.x_studio_sale_price).toString()} */}
                     {item.x_studio_sale_price.toString().slice(0,3)},{item.x_studio_sale_price.toString().slice(3)} دينار أردني
                 </p>
               </header>
-              <body>
-              <p id="demo"></p>
-                {/* <p id="htmltext">{item.x_studio_property_information}</p> */}
+              <body className="flex gap-3">
+              <p>حمامات: {item.x_studio_bathrooms_1}</p> <p>غرف النوم: {item.x_studio_bedrooms}
+              </p>
+              <p>كراجات: {item.x_studio_garages}</p>
+              <p>المساحة: {item.x_studio_property_area} متر مربع</p>
               </body>
 
               <footer className="flex items-center justify-between leading-none p-2 md:p-4">
@@ -40,12 +52,8 @@ const Test = () => {
                   className="flex items-center no-underline hover:underline text-black"
                   href="#"
                 >
-                  <img
-                    alt="Placeholder"
-                    className="block rounded-full"
-                    src="https://picsum.photos/32/32/?random"
-                  />
-                  <p className="ml-2 text-sm">{item.x_studio_many2one_field_YbLip}</p>
+                
+                  <p className="ml-2 text-sm">{item.x_studio_many2one_field_YbLip[1]}</p>
                 </a>
                 <a
                   className="no-underline text-grey-darker hover:text-red-dark"
